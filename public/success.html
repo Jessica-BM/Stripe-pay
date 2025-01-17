@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pago Exitoso</title>
+    <!-- FIREBASE SCRIPTS -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.2//firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.2//firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-storage.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+      }
+      .success-message {
+        color: #2ecc71;
+        font-size: 24px;
+        margin: 20px 0;
+      }
+      .loading {
+        color: #666;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>¡Gracias por tu compra!</h1>
+    <div class="success-message">Tu pago ha sido procesado exitosamente.</div>
+    <p id="status" class="loading">Guardando los detalles de tu compra...</p>
+    <a href="/">Volver a la tienda</a>
+
+    <script>
+      let db;
+
+      // Inicializar la aplicación con la configuración del servidor
+      async function initializeApp() {
+        try {
+          // Obtener la configuración desde el servidor
+          const response = await fetch("/config");
+          const config = await response.json();
+
+          // Inicializar Firebase con la configuración del servidor
+          firebase.initializeApp(config.firebaseConfig);
+          db = firebase.firestore();
+
+          // Una vez inicializado Firebase, guardar los datos
+          await saveToFirebase();
+        } catch (error) {
+          console.error("Error al inicializar la aplicación:", error);
+          document.getElementById("status").textContent =
+            "Hubo un error al procesar los detalles de tu compra. Por favor, contacta a soporte.";
+          document.getElementById("status").style.color = "#e74c3c";
+        }
+      }
+
+      // Guardar datos en Firebase
+      async function saveToFirebase() {
+        try {
+          const customerDataStr = localStorage.getItem("customerData");
+          if (customerDataStr) {
+            const customerData = JSON.parse(customerDataStr);
+
+            // Guardar en Firebase
+            await db.collection("payments").add({
+              nombre: customerData.nombre,
+              email: customerData.email,
+              sessionId: customerData.sessionId,
+              fechaPago: new Date(),
+              estado: "completado",
+            });
+
+            // Actualizar mensaje de estado
+            document.getElementById("status").textContent =
+              "¡Tus detalles de compra han sido guardados correctamente!";
+            document.getElementById("status").style.color = "#2ecc71";
+
+            // Limpiar localStorage
+            localStorage.removeItem("customerData");
+          } else {
+            throw new Error("No se encontraron datos del cliente");
+          }
+        } catch (error) {
+          console.error("Error al guardar en Firebase:", error);
+          document.getElementById("status").textContent =
+            "Hubo un error al guardar los detalles de tu compra. Por favor, contacta a soporte.";
+          document.getElementById("status").style.color = "#e74c3c";
+        }
+      }
+
+      // Inicializar cuando la página se carga
+      window.onload = initializeApp;
+    </script>
+  </body>
+</html>

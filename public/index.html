@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario Paginado</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Delius&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="form-container">
+      <div class="progress-bar">
+        <div class="step active">1</div>
+        <div class="line"></div>
+        <div class="step">2</div>
+        <div class="line"></div>
+        <div class="step">3</div>
+        <div class="line"></div>
+        <div class="step">4</div>
+        <div class="line"></div>
+        <div class="step">5</div>
+      </div>
+      <!-- Paso 1: Datos del Alumno -->
+      <div class="form-page active">
+        <h2>Datos del Alumno</h2>
+        <label for="student_firstname">Nombre(s)</label>
+        <input
+          type="text"
+          name="student_firstname"
+          id="student_firstname"
+          required
+        />
+
+        <label for="student_lastname_father">Apellido Paterno</label>
+        <input
+          type="text"
+          name="student_lastname_father"
+          id="student_lastname_father"
+          required
+        />
+
+        <label for="student_lastname_mother">Apellido Materno</label>
+        <input
+          type="text"
+          name="student_lastname_mother"
+          id="student_lastname_mother"
+          required
+        />
+
+        <label for="student_gender">Género</label>
+        <select name="student_gender" id="student_gender" required>
+          <option value="Seleccione">Seleccione</option>
+          <option value="masculino">Masculino</option>
+          <option value="femenino">Femenino</option>
+          <option value="otro">Otro</option>
+        </select>
+
+        <label for="student_blood_type">Tipo de Sangre</label>
+        <select name="student_blood_type" id="student_blood_type" required>
+          <option value="seleecione">Seleccione</option>
+          <option value="A+">A+</option>
+          <option value="A-">A-</option>
+          <option value="B+">B+</option>
+          <option value="B-">B-</option>
+          <option value="AB+">AB+</option>
+          <option value="AB-">AB-</option>
+          <option value="O+">O+</option>
+          <option value="O-">O-</option>
+        </select>
+
+        <label for="student_birthdate">Fecha de Nacimiento</label>
+        <input
+          type="date"
+          name="student_birthdate"
+          id="student_birthdate"
+          required
+        />
+
+        <label for="student_illness">Padece alguna enfermedad:</label>
+        <select name="student_illness" id="student_illness" required>
+          <option value="Seleccione">Seleccione</option>
+          <option value="sí">Sí</option>
+          <option value="no">No</option>
+        </select>
+
+        <label for="student_illness_details"
+          >Especifique la enfermedad o alergia</label
+        >
+        <input
+          type="text"
+          name="student_illness_details"
+          id="student_illness_details"
+        />
+
+        <label for="student_religion">Religión</label>
+        <input type="text" name="student_religion" id="student_religion" />
+
+        <label for="student_observations">Observaciones</label>
+        <textarea
+          name="student_observations"
+          id="student_observations"
+        ></textarea>
+        <button class="next">Siguiente</button>
+      </div>
+
+      <!-- Paso 2: Datos Académicos -->
+      <div class="form-page">
+        <h2>Datos Académicos</h2>
+        <label for="academic_level">Nivel Escolar</label>
+        <select name="academic_level" id="academic_level" required>
+          <option value="seleccione">Seleccione</option>
+          <option value="preescolar">Preescolar</option>
+          <option value="primaria">Primaria</option>
+          <option value="secundaria">Secundaria</option>
+          <option value="preparatoria">Preparatoria</option>
+        </select>
+
+        <label for="academic_grade">Grado</label>
+        <select name="academic_grade" id="academic_grade" required>
+          <option value="seleccione">Seleccione</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        </select>
+
+        <label for="ciclo">Ciclo Escolar</label>
+        <input type="text" id="ciclo" value="2025-2026" disabled />
+
+        <label for="academic_avg">Promedio</label>
+        <input type="number" name="academic_avg" id="academic_avg" required />
+
+        <label for="academic_previous_school">Escuela de Procedencia</label>
+        <input
+          type="text"
+          name="academic_previous_school"
+          id="academic_previous_school"
+          required
+        />
+
+        <label for="academic_report_card">Anexos Requeridos</label>
+        <p>Boleta de Calificaciones/Certificado de Estudios</p>
+        <input
+          type="file"
+          name="academic_report_card"
+          id="academic_report_card"
+          required
+        />
+        <p>CURP</p>
+        <input
+          type="text"
+          name="academic_curp"
+          id="academic_curp"
+          class="uppercase-input"
+          required
+        />
+        <input
+          type="file"
+          name="academic_curp_file"
+          id="academic_curp_file"
+          required
+        />
+        <p>Acta de Nacimiento</p>
+        <input
+          type="file"
+          name="academic_birth_certificate"
+          id="academic_birth_certificate"
+          required
+        />
+
+        <!-- Contenedor de botones -->
+        <div class="button-container">
+          <button class="prev">Atrás</button>
+          <button class="next">Siguiente</button>
+        </div>
+      </div>
+
+      <!-- Paso 3: Datos del Padre/Madre -->
+      <div class="form-page">
+        <h2>Datos del Padre/Madre</h2>
+        <label for="parent_firstname">Nombre(s)</label>
+        <input
+          type="text"
+          name="parent_firstname"
+          id="parent_firstname"
+          required
+        />
+
+        <label for="parent_lastname_father">Apellido Paterno</label>
+        <input
+          type="text"
+          name="parent_lastname_father"
+          id="parent_lastname_father"
+          required
+        />
+
+        <label for="parent_lastname_mother">Apellido Materno</label>
+        <input
+          type="text"
+          name="parent_lastname_mother"
+          id="parent_lastname_mother"
+          required
+        />
+
+        <label for="parent_relationship">Parentesco</label>
+        <select name="parent_relationship" id="parent_relationship" required>
+          <option value="seleccione">Seleccione</option>
+          <option value="padre">Padre</option>
+          <option value="madre">Madre</option>
+          <option value="tutor">Tutor</option>
+        </select>
+
+        <label for="parent_blood_type">Tipo de Sangre</label>
+        <select name="parent_blood_type" id="parent_blood_type" required>
+          <option value="seleccione">Seleccione</option>
+          <option value="A+">A+</option>
+          <option value="A-">A-</option>
+          <option value="B+">B+</option>
+          <option value="B-">B-</option>
+          <option value="AB+">AB+</option>
+          <option value="AB-">AB-</option>
+          <option value="O+">O+</option>
+          <option value="O-">O-</option>
+        </select>
+
+        <label for="parent_birthdate">Fecha de Nacimiento</label>
+        <input
+          type="date"
+          name="parent_birthdate"
+          id="parent_birthdate"
+          required
+        />
+
+        <label for="parent_curp">CURP</label>
+        <input
+          type="text"
+          name="parent_curp"
+          id="parent_curp"
+          class="uppercase-input"
+          required
+        />
+
+        <label for="parent_curp_file">Archivo CURP</label>
+        <input
+          type="file"
+          name="parent_curp_file"
+          id="parent_curp_file"
+          required
+        />
+
+        <label for="parent_ine_file">INE</label>
+        <input
+          type="file"
+          name="parent_ine_file"
+          id="parent_ine_file"
+          required
+        />
+
+        <label for="parent_email">Correo Electrónico</label>
+        <input type="email" name="parent_email" id="parent_email" required />
+
+        <label for="parent_phone_home">Tel. de Casa/Oficina</label>
+        <input
+          type="tel"
+          name="parent_phone_home"
+          id="parent_phone_home"
+          required
+        />
+
+        <label for="parent_phone_mobile">Celular</label>
+        <input
+          type="tel"
+          name="parent_phone_mobile"
+          id="parent_phone_mobile"
+          required
+        />
+
+        <h3>Dirección</h3>
+        <label for="address_street">Calle</label>
+        <input type="text" name="address_street" id="address_street" required />
+
+        <label for="address_number">Número</label>
+        <input type="text" name="address_number" id="address_number" required />
+
+        <label for="address_colony">Colonia</label>
+        <input type="text" name="address_colony" id="address_colony" required />
+
+        <label for="address_zipcode">Código Postal</label>
+        <input
+          type="text"
+          name="address_zipcode"
+          id="address_zipcode"
+          required
+        />
+
+        <label for="address_state">Estado</label>
+        <select name="address_state" id="address_state" required>
+          <option value="seleccione">Seleccione</option>
+        </select>
+
+        <label for="address_city">Ciudad</label>
+        <select name="address_city" id="address_city" required>
+          <option value="seleccione">Seleccione</option>
+          <!-- Agrega más ciudades según sea necesario -->
+        </select>
+
+        <label for="parent_occupation">Ocupación</label>
+        <input
+          type="text"
+          name="parent_occupation"
+          id="parent_occupation"
+          required
+        />
+
+        <label for="parent_marital_status">Estado Civil</label>
+        <select
+          name="parent_marital_status"
+          id="parent_marital_status"
+          required
+        >
+          <option value="Seleccione">Seleccione</option>
+          <option value="soltero">Soltero</option>
+          <option value="casado">Casado</option>
+          <option value="divorciado">Divorciado</option>
+        </select>
+        <!-- Contenedor de botones -->
+        <div class="button-container">
+          <button class="prev">Atrás</button>
+          <button class="next">Siguiente</button>
+        </div>
+      </div>
+
+      <!-- Paso 4: Contacto de Emergencia -->
+      <div class="form-page">
+        <h2>Contacto de Emergencia</h2>
+        <label for="emergency_firstname">Nombre(s)</label>
+        <input
+          type="text"
+          name="emergency_firstname"
+          id="emergency_firstname"
+          required
+        />
+
+        <label for="emergency_lastname_father">Apellido Paterno</label>
+        <input
+          type="text"
+          name="emergency_lastname_father"
+          id="emergency_lastname_father"
+          required
+        />
+
+        <label for="emergency_lastname_mother">Apellido Materno</label>
+        <input
+          type="text"
+          name="emergency_lastname_mother"
+          id="emergency_lastname_mother"
+          required
+        />
+
+        <label for="emergency_phone">Teléfono de Emergencia</label>
+        <input
+          type="tel"
+          name="emergency_phone"
+          id="emergency_phone"
+          required
+        />
+
+        <label for="emergency_relationship">Parentesco</label>
+        <select
+          name="emergency_relationship"
+          id="emergency_relationship"
+          required
+        >
+          <option value="Seleccione">Seleccione</option>
+          <option value="padre">Padre</option>
+          <option value="madre">Madre</option>
+          <option value="hermano">Hermano</option>
+          <option value="tutor">Tutor</option>
+          <option value="otro">Otro</option>
+        </select>
+        <!-- Contenedor de botones -->
+        <div class="button-container">
+          <button class="prev">Atrás</button>
+          <button class="next">Siguiente</button>
+        </div>
+      </div>
+
+      <!-- Paso 5: Información de Pago -->
+      <div class="form-page">
+        <h2>Información de Pago</h2>
+        <p><strong>Concepto:</strong> Inscripción al ciclo escolar 2025-2026</p>
+        <p><strong>Monto:</strong> $2,000.00 MXN</p>
+
+        <div id="stripe-container">
+          <div id="card-element"></div>
+        </div>
+        <!-- Contenedor de botones -->
+        <div class="button-container">
+          <button class="prev">Atrás</button>
+          <button id="pay-button">Pagar</button>
+        </div>
+      </div>
+    </div>
+    <!-- Modal de Procesando -->
+    <div class="modal fade" tabindex="-1" id="payProcess">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body text-center py-4">
+            <div
+              class="spinner-border text-primary mb-3"
+              role="status"
+              style="width: 3rem; height: 3rem"
+            >
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <h5 class="mb-0">Procesando pago...</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de Éxito -->
+    <div class="modal fade" tabindex="-1" id="successModal">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <!-- Encabezado del modal -->
+          <div class="modal-header">
+            <h5 class="modal-title">Confirmación de Pago</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <!-- Cuerpo del modal -->
+          <div class="modal-body text-center py-4">
+            <!-- Ícono de éxito -->
+            <div class="mb-3" id="iconContainer">
+              <i class="bi bi-bag-check success-icon"></i>
+            </div>
+            <!-- Mensaje de confirmación -->
+            <h5 class="mb-3 mt-3">
+              El pago se efectuó exitosamente y el registro se ha guardado.
+            </h5>
+            <hr />
+
+            <!-- Contenido del recibo -->
+            <div id="receiptContent" style="text-align: left">
+              <!-- El recibo se generará aquí dinámicamente -->
+              <p style="font-size: 14px; color: #666">
+                <em>Generando el recibo...</em>
+              </p>
+            </div>
+            <hr />
+
+            <!-- Botones -->
+            <div class="d-flex justify-content-center gap-3">
+              <button class="btn btn-primary" id="downloadReceipt">
+                Descargar recibo PDF
+              </button>
+              <button type="button" id="reloadPage" class="btn btn-success">
+                Aceptar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOMENT JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <!-- FIREBASE SCRIPTS -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.2//firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.2//firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-storage.js"></script>
+    <script>
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyBo-e2fal1DPD6zwEx_yRsg7rVj6UIZ7AI",
+        authDomain: "escuelas-235df.firebaseapp.com",
+        projectId: "escuelas-235df",
+        storageBucket: "escuelas-235df.appspot.com",
+        messagingSenderId: "559386225352",
+        appId: "1:559386225352:web:106c95bc92748f80a313fd",
+        measurementId: "G-T010J2CDKV",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      //Variable para autenticación
+      const auth = firebase.auth();
+      //Variable de conexión para Cloud Firestore
+      const db = firebase.firestore();
+      //Variables para acceder a la storage
+      const storage = firebase.storage();
+      const storageRef = storage.ref();
+    </script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
