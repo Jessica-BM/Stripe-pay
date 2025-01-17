@@ -25,7 +25,7 @@ document.getElementById("pay-button").addEventListener("click", async (e) => {
   });
   modal.show();
   // Crear Payment Intent en el servidor
-  const res = await fetch("/create-payment-intent", { method: "POST" });
+  const res = await fetch("https://foamy-absorbed-huckleberry.glitch.me/create-payment-intent", { method: "POST" });
   const { clientSecret } = await res.json();
 
   // Confirmar el pago en el cliente
